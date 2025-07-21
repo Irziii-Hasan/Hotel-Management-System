@@ -1,7 +1,5 @@
 package com.system.hotelmanagement.model;
 
-import java.math.BigDecimal;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,8 +18,8 @@ public class RoomEntity {
 	@Column
 	private Long occupancyCapacity;
 	
-	@Column(precision = 10, scale = 2)
-	private BigDecimal  ratePerNight;
+	@Column
+	private double  ratePerNight;
 	
 	@Column
 	private Integer discountPercentage;
@@ -31,5 +29,5 @@ public class RoomEntity {
 	
 	@Column 
 	private String availability;
-	
+		
 }
