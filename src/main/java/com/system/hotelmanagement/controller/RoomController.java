@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.system.hotelmanagement.dto.room.CreateRoomDTO;
+import com.system.hotelmanagement.dto.room.ViewRoomDTO;
 //import org.springframework.web.bind.annotation.*;
-import com.system.hotelmanagement.model.RoomEntity;
 import com.system.hotelmanagement.service.RoomService;
 
 @RestController
@@ -21,17 +23,17 @@ public class RoomController {
 	private RoomService roomService;
 	
 	@PostMapping("/addRoom")
-	public RoomEntity addRoom(@RequestBody RoomEntity roomEntity){
+	public ViewRoomDTO addRoom(@RequestBody CreateRoomDTO roomEntity){
 		return roomService.addRoom(roomEntity);
 	}
 	
 	@GetMapping
-	public List<RoomEntity> showRoom() {
+	public List<ViewRoomDTO> showRoom() {
 		return roomService.showRoomsList();
 	}
 	
 	@PatchMapping ("/{id}")
-	public RoomEntity updateRoom(@PathVariable Long id, @RequestBody RoomEntity updateRoom) {
+	public ViewRoomDTO updateRoom(@PathVariable Long id, @RequestBody CreateRoomDTO updateRoom) {
 		return roomService.updateRoom(id, updateRoom);
 	}
 }
