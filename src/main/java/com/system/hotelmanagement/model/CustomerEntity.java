@@ -7,28 +7,24 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
-
 @Entity
 @Data
-public class RoomEntity {
-
-	@Id 
+public class CustomerEntity {
+	
+	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column
-	private Long occupancyCapacity;
+	@Column 
+	private String firstName;
+	
+	@Column 
+	private String email;
+
+	@Column 
+	private String lastName;
 	
 	@Column
-	private double  ratePerNight;
+	private Integer accountBalance;
 	
-	@Column
-	private Integer discountPercentage;
-	
-	@Column
-	private String description;
-	
-	@Column
-	private boolean available;
-		
 }

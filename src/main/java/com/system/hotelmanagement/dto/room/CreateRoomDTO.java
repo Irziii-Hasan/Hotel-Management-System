@@ -1,8 +1,10 @@
 package com.system.hotelmanagement.dto.room;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class CreateRoomDTO {
 
 	
@@ -14,5 +16,5 @@ public class CreateRoomDTO {
 	
 	private String description;
 	
-	private String availability;
+	private boolean available;
 }

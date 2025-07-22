@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.system.hotelmanagement.dto.room.CreateRoomDTO;
+import com.system.hotelmanagement.dto.room.DTOConvertor;
 import com.system.hotelmanagement.dto.room.ViewRoomDTO;
 import com.system.hotelmanagement.model.RoomEntity;
 import com.system.hotelmanagement.repository.RoomRepository;
@@ -18,62 +19,43 @@ public class RoomService {
 
 	@Autowired
 	private final RoomRepository roomRepository;
+	DTOConvertor dto = new DTOConvertor();
 	
 	public ViewRoomDTO addRoom(CreateRoomDTO room) {
-		RoomEntity roomEntity = dtoToEntity(room);
+		RoomEntity roomEntity = dto.dtoToEntity(room);
 		RoomEntity savedRoom = roomRepository.save(roomEntity);
-		return entityToDto(savedRoom);
+		return dto.entityToDto(savedRoom);
 	}
 	
 	public List<ViewRoomDTO> showRoomsList(){
 		List<RoomEntity> roomList = roomRepository.findAll();
 		return roomList.stream()
-			.map(this :: entityToDto)
+			.map(rList->dto.entityToDto(rList))
 			.toList();
 	}
 	
-	public ViewRoomDTO updateRoom(Long id, CreateRoomDTO dto) {
+	public ViewRoomDTO updateRoom(Long id, CreateRoomDTO room) {
 		RoomEntity existingStudent = roomRepository.findById(id)
 				.orElseThrow(()-> new RuntimeException());
-		if(dto.getOccupancyCapacity()!=null) {
-			existingStudent.setOccupancyCapacity(dto.getOccupancyCapacity());
+		if(room.getOccupancyCapacity()!=null) {
+			existingStudent.setOccupancyCapacity(room.getOccupancyCapacity());
 		}
-		if(dto.getRatePerNight()!=0) {
-			existingStudent.setRatePerNight(dto.getRatePerNight());
+		if(room.getRatePerNight()!=0) {
+			existingStudent.setRatePerNight(room.getRatePerNight());
 		}
-		if(dto.getDiscountPercentage()!=null) {
-			existingStudent.setDiscountPercentage(dto.getDiscountPercentage());
+		if(room.getDiscountPercentage()!=null) {
+			existingStudent.setDiscountPercentage(room.getDiscountPercentage());
 		}
-		if(dto.getDescription()!=null) {
-			existingStudent.setDescription(dto.getDescription());
+		if(room.getDescription()!=null) {
+			existingStudent.setDescription(room.getDescription());
 		}
-		if(dto.getAvailability()!=null) {
-			existingStudent.setAvailability(dto.getAvailability());
+		if(room.isAvailable()) {
+			existingStudent.setAvailable(room.isAvailable());
 		}
 			
 		RoomEntity updatedRoom =  roomRepository.save(existingStudent);
-		return entityToDto(updatedRoom);
+		return dto.entityToDto(updatedRoom);
 	}
 	
 	
-	private ViewRoomDTO entityToDto(RoomEntity roomEntity) {
-		ViewRoomDTO dto = new ViewRoomDTO();
-		dto.setId(roomEntity.getId());
-		dto.setOccupancyCapacity(roomEntity.getOccupancyCapacity());
-		dto.setRatePerNight(roomEntity.getRatePerNight());
-		dto.setAvailability(roomEntity.getAvailability());
-		dto.setDescription(roomEntity.getDescription());
-		dto.setDiscountPercentage(roomEntity.getDiscountPercentage());
-		return dto;
-	}
-	
-	private RoomEntity dtoToEntity(CreateRoomDTO createRoomDTO) {
-		return RoomEntity.builder()
-				.availability(createRoomDTO.getAvailability())
-				.ratePerNight(createRoomDTO.getRatePerNight())
-				.occupancyCapacity(createRoomDTO.getOccupancyCapacity())
-				.discountPercentage(createRoomDTO.getDiscountPercentage())
-				.description(createRoomDTO.getDescription())
-				.build();
-	}
 }
