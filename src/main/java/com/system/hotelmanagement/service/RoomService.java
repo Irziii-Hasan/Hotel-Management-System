@@ -34,6 +34,13 @@ public class RoomService {
 			.toList();
 	}
 	
+	public String deleteRoom(Long id){
+		RoomEntity room = roomRepository.findById(id)
+				.orElseThrow(()-> new RuntimeException("No room found with id"+id));
+		roomRepository.deleteById(id);
+		return "Room successfully deleted.";
+	}
+	
 	public ViewRoomDTO updateRoom(Long id, CreateRoomDTO room) {
 		RoomEntity existingStudent = roomRepository.findById(id)
 				.orElseThrow(()-> new RuntimeException());

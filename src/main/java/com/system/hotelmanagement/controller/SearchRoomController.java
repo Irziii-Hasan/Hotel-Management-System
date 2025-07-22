@@ -20,16 +20,16 @@ public class SearchRoomController {
 	
 	private final SearchRoomService roomService;
 	
-	@GetMapping ("{available}")
+	@GetMapping ("search/by-availability")
 	public List<ViewRoomDTO> searchRoomByAvailable(@RequestParam("available") boolean isAvailable){
 		return roomService.searchRoomByAvailability(isAvailable);
 		
 	}
 	
-//	@GetMapping ("search/{id}")
-//	public ViewRoomDTO searchRoomById(@PathVariable Long id) {
-//		return roomService.searchRoomById(id);
-//	}
+	@GetMapping ("search/by-id")
+	public ViewRoomDTO searchRoomById(@PathVariable Long id) {
+		return roomService.searchRoomById(id);
+	}
 	
 	
 }

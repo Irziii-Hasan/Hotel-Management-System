@@ -3,6 +3,8 @@ package com.system.hotelmanagement.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,8 +34,15 @@ public class RoomController {
 		return roomService.showRoomsList();
 	}
 	
+	@DeleteMapping ("/{id}")
+	public ResponseEntity<String> deleteRoom(@PathVariable Long id){
+		roomService.deleteRoom(id);
+		return ResponseEntity.ok("Room deleted successfully");
+	}
+	
 	@PatchMapping ("/{id}")
 	public ViewRoomDTO updateRoom(@PathVariable Long id, @RequestBody CreateRoomDTO updateRoom) {
 		return roomService.updateRoom(id, updateRoom);
 	}
+	
 }

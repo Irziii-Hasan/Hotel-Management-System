@@ -16,13 +16,12 @@ public class DTOConvertor {
 	}
 	
 	public RoomEntity dtoToEntity(CreateRoomDTO createRoomDTO) {
-		RoomEntity roomEntity = new RoomEntity();
-		roomEntity.setAvailable(createRoomDTO.isAvailable());
-		
-		roomEntity.setRatePerNight(createRoomDTO.getRatePerNight());
-		roomEntity.setOccupancyCapacity(createRoomDTO.getOccupancyCapacity());
-		roomEntity.setDiscountPercentage(createRoomDTO.getDiscountPercentage());
-		roomEntity.setDescription(createRoomDTO.getDescription());
-		return roomEntity;
+		return RoomEntity.builder()
+		.available(createRoomDTO.isAvailable())
+		.ratePerNight(createRoomDTO.getRatePerNight())
+		.occupancyCapacity(createRoomDTO.getOccupancyCapacity())
+		.discountPercentage(createRoomDTO.getDiscountPercentage())
+		.description(createRoomDTO.getDescription())
+		.build();
 	}
 }
