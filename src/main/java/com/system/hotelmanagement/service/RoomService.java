@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.system.hotelmanagement.dto.room.CreateRoomDTO;
-import com.system.hotelmanagement.dto.room.DTOConvertor;
+import com.system.hotelmanagement.dto.room.RoomDTOConvertor;
 import com.system.hotelmanagement.dto.room.ViewRoomDTO;
 import com.system.hotelmanagement.model.RoomEntity;
 import com.system.hotelmanagement.repository.RoomRepository;
@@ -19,7 +19,7 @@ public class RoomService {
 
 	@Autowired
 	private final RoomRepository roomRepository;
-	DTOConvertor dto = new DTOConvertor();
+	RoomDTOConvertor dto = new RoomDTOConvertor();
 	
 	public ViewRoomDTO addRoom(CreateRoomDTO room) {
 		RoomEntity roomEntity = dto.dtoToEntity(room);
@@ -35,7 +35,7 @@ public class RoomService {
 	}
 	
 	public String deleteRoom(Long id){
-		RoomEntity room = roomRepository.findById(id)
+		roomRepository.findById(id)
 				.orElseThrow(()-> new RuntimeException("No room found with id"+id));
 		roomRepository.deleteById(id);
 		return "Room successfully deleted.";

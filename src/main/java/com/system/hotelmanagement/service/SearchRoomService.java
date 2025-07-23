@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.system.hotelmanagement.dto.room.DTOConvertor;
+import com.system.hotelmanagement.dto.room.RoomDTOConvertor;
 import com.system.hotelmanagement.dto.room.ViewRoomDTO;
 import com.system.hotelmanagement.model.RoomEntity;
 import com.system.hotelmanagement.repository.RoomRepository;
@@ -18,7 +18,7 @@ public class SearchRoomService {
 
 	@Autowired
 	private RoomRepository roomRepository;
-	DTOConvertor dto = new DTOConvertor();
+	RoomDTOConvertor dto = new RoomDTOConvertor();
 
 	
 	public List<ViewRoomDTO> searchRoomByAvailability(boolean isAvailable) {

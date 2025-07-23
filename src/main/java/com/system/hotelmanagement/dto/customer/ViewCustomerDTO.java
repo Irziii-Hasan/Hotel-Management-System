@@ -3,8 +3,10 @@ package com.system.hotelmanagement.dto.customer;
 import lombok.Data;
 
 @Data
-public class CreateCustomerDTO {
-		
+public class ViewCustomerDTO {
+
+	private Long id;
+	
 	private String firstName;
 	
 	private String email;

@@ -1,0 +1,23 @@
+package com.system.hotelmanagement.dto.bookingroom;
+
+import java.time.LocalDate;
+
+import com.system.hotelmanagement.model.CustomerEntity;
+import com.system.hotelmanagement.model.RoomEntity;
+
+import lombok.Data;
+
+@Data
+public class ViewBookingDTO {
+
+	private Long id;
+	
+	private CustomerEntity customer;
+	
+	private RoomEntity room;
+	
+	private LocalDate checkIn;
+	
+	private LocalDate checkOut;
+	
+}

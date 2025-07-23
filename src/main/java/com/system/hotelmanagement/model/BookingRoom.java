@@ -1,33 +1,39 @@
 package com.system.hotelmanagement.model;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
 @Data
+@Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerEntity {
-	
+public class BookingRoom {
+
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column 
-	private String firstName;
+	@ManyToOne
+	private CustomerEntity customer;
 	
-	@Column 
-	private String email;
-
-	@Column 
-	private String lastName;
+	@ManyToOne
+	private RoomEntity room;
 	
+	@Column(nullable = false)
+	private LocalDate checkIn;
+	
+	@Column (nullable = false)
+	private LocalDate checkOut;
+		
 }

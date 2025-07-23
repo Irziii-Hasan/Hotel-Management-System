@@ -2,7 +2,7 @@ package com.system.hotelmanagement.dto.room;
 
 import com.system.hotelmanagement.model.RoomEntity;
 
-public class DTOConvertor {
+public class RoomDTOConvertor {
 
 	public ViewRoomDTO entityToDto(RoomEntity roomEntity) {
 		ViewRoomDTO dto = new ViewRoomDTO();
