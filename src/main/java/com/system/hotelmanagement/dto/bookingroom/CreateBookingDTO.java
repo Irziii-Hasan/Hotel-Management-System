@@ -17,4 +17,6 @@ public class CreateBookingDTO {
 	private LocalDate checkIn;
 	
 	private LocalDate checkOut;
+	
+	
 }
