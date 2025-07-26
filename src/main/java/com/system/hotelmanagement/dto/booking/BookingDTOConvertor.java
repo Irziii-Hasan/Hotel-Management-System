@@ -1,18 +1,9 @@
-package com.system.hotelmanagement.dto.bookingroom;
-
-import org.springframework.beans.factory.annotation.Autowired;
+package com.system.hotelmanagement.dto.booking;
 
 import com.system.hotelmanagement.model.BookingEntity;
-import com.system.hotelmanagement.model.CustomerEntity;
-import com.system.hotelmanagement.model.RoomEntity;
-import com.system.hotelmanagement.repository.CustomerRepository;
-import com.system.hotelmanagement.repository.RoomRepository;
 
 public class BookingDTOConvertor {
-	
-	@Autowired
-	private CustomerRepository customerRepo;
-	private RoomRepository roomRepo;
+
 	public ViewBookingDTO entityToDto(BookingEntity bookRoom) {
 		ViewBookingDTO dto = new ViewBookingDTO();
 		dto.setId(bookRoom.getId());

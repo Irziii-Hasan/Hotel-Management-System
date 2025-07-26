@@ -1,16 +1,14 @@
 package com.system.hotelmanagement.service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.system.hotelmanagement.dto.bookingroom.BookingDTOConvertor;
-import com.system.hotelmanagement.dto.bookingroom.CreateBookingDTO;
-import com.system.hotelmanagement.dto.bookingroom.ViewBookingDTO;
+import com.system.hotelmanagement.dto.booking.BookingDTOConvertor;
+import com.system.hotelmanagement.dto.booking.CreateBookingDTO;
+import com.system.hotelmanagement.dto.booking.ViewBookingDTO;
 import com.system.hotelmanagement.model.BookingEntity;
-import com.system.hotelmanagement.model.CustomerEntity;
 import com.system.hotelmanagement.model.RoomEntity;
 import com.system.hotelmanagement.repository.BookingRepository;
 import com.system.hotelmanagement.repository.CustomerRepository;
@@ -31,9 +29,9 @@ public class BookingService {
 	public String roomBookingValidationCheck(CreateBookingDTO bookingDTO) {
 		BookingEntity bookingRoom = dto.dtoToEntity(bookingDTO);
 		
-		CustomerEntity customer = customerRepo.findById(bookingDTO.getCustomer().getId())
+		customerRepo.findById(bookingDTO.getCustomer().getId())
                 .orElseThrow(() -> new RuntimeException("Customer not found"));
-		RoomEntity room = roomRepo.findById(bookingDTO.getRoom().getId())
+		roomRepo.findById(bookingDTO.getRoom().getId())
                 .orElseThrow(() -> new RuntimeException("Room not found"));
 		boolean isReserved = bookingRepo.isRoomReserved(bookingRoom.getCheckIn(), bookingRoom.getCheckOut());
 		

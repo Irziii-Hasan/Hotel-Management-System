@@ -1,4 +1,4 @@
-package com.system.hotelmanagement.dto.bookingroom;
+package com.system.hotelmanagement.dto.booking;
 
 import java.time.LocalDate;
 

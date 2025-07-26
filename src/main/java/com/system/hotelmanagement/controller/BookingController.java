@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.system.hotelmanagement.dto.bookingroom.CreateBookingDTO;
-import com.system.hotelmanagement.dto.bookingroom.ViewBookingDTO;
-import com.system.hotelmanagement.model.BookingEntity;
+import com.system.hotelmanagement.dto.booking.CreateBookingDTO;
+import com.system.hotelmanagement.dto.booking.ViewBookingDTO;
 import com.system.hotelmanagement.service.BookingService;
 
 import lombok.RequiredArgsConstructor;
