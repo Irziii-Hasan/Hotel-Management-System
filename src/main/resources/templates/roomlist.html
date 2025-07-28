@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Room List</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+  <div class="container">
+    <a class="navbar-brand" href="#">Hotel Management System</a>
+    <form th:action="@{/logout}" method="post" class="d-flex">
+      <button type="submit" class="btn btn-outline-light btn-sm">Logout</button>
+    </form>
+  </div>
+</nav>
+
+<!-- Table -->
+<div class="container">
+  <h2 class="mb-4">Available Rooms</h2>
+  <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Occupancy</th>
+        <th>Rate per Night</th>
+        <th>Discount %</th>
+        <th>Description</th>
+        <th>Available</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="room : ${rooms}">
+        <td th:text="${room.id}"></td>
+        <td th:text="${room.occupancyCapacity}"></td>
+        <td th:text="${room.ratePerNight}"></td>
+        <td th:text="${room.discountPercentage}"></td>
+        <td th:text="${room.description}"></td>
+        <td>
+          <span th:if="${room.available}" class="text-success">Yes</span>
+          <span th:unless="${room.available}" class="text-danger">No</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

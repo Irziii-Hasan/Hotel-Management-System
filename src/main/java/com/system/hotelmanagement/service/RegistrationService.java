@@ -22,7 +22,7 @@ public class RegistrationService {
 	private final UserRepository userRepository;
 	CustomerDTOConvertor customerDTOConvertor = new CustomerDTOConvertor();
 	
-//	@Transactional
+	@Transactional
 	public String registration(RegistrationRequestDTO dto) {
 		
 //		Register customer
@@ -32,14 +32,13 @@ public class RegistrationService {
 //		Register user
 		UserEntity user = UserEntity.builder()
 		.username(dto.getUsername())
-		.password(dto.getPassword())
+		.password("{noop}"+dto.getPassword())
 		.customer(savedCustomer)
 		.role("CUSTOMER")
 		.build();
 		
 		userRepository.save(user);
 
-		
 		
 		
 		return "success";

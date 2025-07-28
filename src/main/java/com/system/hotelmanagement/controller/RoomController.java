@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -18,7 +19,8 @@ import com.system.hotelmanagement.dto.room.ViewRoomDTO;
 //import org.springframework.web.bind.annotation.*;
 import com.system.hotelmanagement.service.RoomService;
 
-@RestController
+import org.springframework.ui.Model;
+@Controller
 @RequestMapping ("hotelmanagementsystem/room")
 public class RoomController {
 	@Autowired
@@ -30,8 +32,10 @@ public class RoomController {
 	}
 	
 	@GetMapping
-	public List<ViewRoomDTO> showRoom() {
-		return roomService.showRoomsList();
+	public String showRoom(Model model) {
+		List<ViewRoomDTO> rooms = roomService.showRoomsList();
+        model.addAttribute("rooms", rooms);
+        return "roomlist";
 	}
 	
 	@DeleteMapping ("/{id}")
