@@ -24,4 +24,12 @@ public class RoomDTOConvertor {
 		.description(createRoomDTO.getDescription())
 		.build();
 	}
+	
+//	public RoomDataDTO entityToDtoForRoomHistory(RoomEntity roomEntity) {
+//		RoomDataDTO dto = new RoomDataDTO();
+//		dto.setId(roomEntity.getId());
+//		dto.setOccupancyCapacity(roomEntity.getOccupancyCapacity());
+//		dto.setDescription(roomEntity.getDescription());
+//		return dto;
+//	}
 }

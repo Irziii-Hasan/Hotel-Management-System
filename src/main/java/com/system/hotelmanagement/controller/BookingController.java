@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.system.hotelmanagement.dto.booking.BookingHistoryDTO;
 import com.system.hotelmanagement.dto.booking.CreateBookingDTO;
-import com.system.hotelmanagement.dto.booking.ViewBookingDTO;
 import com.system.hotelmanagement.service.BookingService;
 
 import lombok.RequiredArgsConstructor;
@@ -33,7 +33,7 @@ public class BookingController {
 	
 	
 	@GetMapping ("bookinghistory/{id}")
-	public List<ViewBookingDTO> showBookingHistory(@PathVariable Long id){
+	public List<BookingHistoryDTO> showBookingHistory(@PathVariable Long id){
 		return bookRoomService.showBookingHistory(id);
 	}
 	
@@ -42,4 +42,5 @@ public class BookingController {
 		return bookRoomService.getPriceAfterDiscount(bookingDTO);
 	}
 	
+
 }

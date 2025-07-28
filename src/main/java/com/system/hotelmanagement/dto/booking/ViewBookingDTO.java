@@ -20,4 +20,8 @@ public class ViewBookingDTO {
 	
 	private LocalDate checkOut;
 	
+	private double netPrice;
+	
+	private String paymentMethod;
+
 }

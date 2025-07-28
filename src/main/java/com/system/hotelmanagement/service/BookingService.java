@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.system.hotelmanagement.dto.booking.BookingDTOConvertor;
+import com.system.hotelmanagement.dto.booking.BookingHistoryDTO;
+import com.system.hotelmanagement.dto.booking.BookingHistoryDTOConvertor;
 import com.system.hotelmanagement.dto.booking.CreateBookingDTO;
 import com.system.hotelmanagement.dto.booking.ViewBookingDTO;
 import com.system.hotelmanagement.model.BookingEntity;
@@ -25,6 +27,8 @@ public class BookingService {
 	private final CustomerRepository customerRepo;
 	private final RoomRepository roomRepo;
 	BookingDTOConvertor dto = new BookingDTOConvertor();
+	BookingHistoryDTOConvertor dtoHistory = new BookingHistoryDTOConvertor();
+
 	
 	public String roomBookingValidationCheck(CreateBookingDTO bookingDTO) {
 		BookingEntity bookingRoom = dto.dtoToEntity(bookingDTO);
@@ -66,10 +70,19 @@ public class BookingService {
 //	}
 	
 	
-	public List<ViewBookingDTO> showBookingHistory(Long id) {
-		List<BookingEntity> bookings =  bookingRepo.findByCustomerId(id);
-		return bookings.stream()
-				.map(t-> dto.entityToDto(t))
+//	public List<ViewBookingDTO> showBookingHistory(Long id) {
+//		List<BookingEntity> bookings =  bookingRepo.findByCustomerId(id);
+//		return bookings.stream()
+//				.map(t-> dto.entityToDto(t))
+//				.toList();
+//		
+//	}
+	
+	public List<BookingHistoryDTO> showBookingHistory(Long id){
+		List<BookingEntity> bookingList =  bookingRepo.findByCustomerId(id);
+		return bookingList
+				.stream()
+				.map(t-> dtoHistory.entityToDto(t))
 				.toList();
 	}
 	

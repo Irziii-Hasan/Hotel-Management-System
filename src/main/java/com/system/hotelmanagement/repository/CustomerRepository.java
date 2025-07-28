@@ -8,4 +8,7 @@ import com.system.hotelmanagement.model.CustomerEntity;
 @Repository
 public interface CustomerRepository extends JpaRepository<CustomerEntity, Long> {
 	
+	public CustomerEntity findByEmail(String email);
+	
+	
 }

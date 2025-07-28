@@ -38,5 +38,9 @@ public class BookingEntity {
 	
 	@Column (nullable = false)
 	private LocalDate checkOut;
+	
+	private double netPrice;
+	
+	private String paymentMethod;
 		
 }

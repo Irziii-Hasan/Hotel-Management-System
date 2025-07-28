@@ -1,9 +1,7 @@
 package com.system.hotelmanagement.controller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,19 +15,19 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping ("hotelmanagementsystem")
+@RequestMapping ("hotelmanagementsystem/")
 public class CustomerController {
 	
 	@Autowired
 	private final CustomerService customerService;
 	
-	@PostMapping ("customer/addcustomer")
+	@PostMapping ("registercustomer")
 	public ViewCustomerDTO AddCustomer(@RequestBody CreateCustomerDTO customer) {
 		return customerService.addCustomer(customer);
 	}
 	
-	@GetMapping ("customer")
-	public List<ViewCustomerDTO> showCustomer(CreateCustomerDTO customer){
-		return customerService.showCustomer();
-	}
+//	@GetMapping ("customer")
+//	public List<ViewCustomerDTO> showCustomer(CreateCustomerDTO customer){
+//		return customerService.showCustomer();
+//	}
 }
