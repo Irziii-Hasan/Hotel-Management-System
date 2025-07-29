@@ -1,35 +1,49 @@
 package com.system.hotelmanagement.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
+import com.system.hotelmanagement.dto.room.ViewRoomByCustomerDTO;
 import com.system.hotelmanagement.dto.room.ViewRoomDTO;
 import com.system.hotelmanagement.service.SearchRoomService;
 
 import lombok.RequiredArgsConstructor;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
-@RequestMapping ("hotelmanagementsystem/room")
+@RequestMapping ("hotelmanagementsystem/customer/room")
 public class SearchRoomController {
 	
 	private final SearchRoomService roomService;
 	
-	@GetMapping ("search/by-availability")
-	public List<ViewRoomDTO> searchRoomByAvailable(@RequestParam("available") boolean isAvailable){
-		return roomService.searchRoomByAvailability(isAvailable);
-		
+	@GetMapping
+	public String  searchRoomByAvailable(Model model){
+		List<ViewRoomByCustomerDTO> rooms =  roomService.searchRoomByAvailability();
+		model.addAttribute("rooms",rooms);
+		return "roomlist";
 	}
 	
-	@GetMapping ("search/by-id")
-	public ViewRoomDTO searchRoomById(@PathVariable Long id) {
-		return roomService.searchRoomById(id);
+	@GetMapping ("/search")
+	public String  searchAvailableRoomByDuration(@RequestParam("checkIn") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkIn,
+		    @RequestParam("checkOut") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkOut,
+		    Model model) {
+		List<ViewRoomByCustomerDTO> availableRoomsFromBooking =  roomService.searchAvailableRoomByDuration(checkIn, checkOut);
+	    model.addAttribute("rooms", availableRoomsFromBooking);
+
+		return "roomlist";
 	}
 	
+//	@GetMapping ("search/by-id")
+//	public ViewRoomDTO searchRoomById(@PathVariable Long id) {
+//		return roomService.searchRoomById(id);
+//	}
+//	
 	
 }

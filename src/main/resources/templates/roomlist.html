@@ -17,6 +17,34 @@
   </div>
 </nav>
 
+<!-- Breadcrumbs -->
+<div class="container mb-3">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a th:href="@{/hotelmanagementsystem/customer/dashboard}">Dashboard</a></li>
+      <li class="breadcrumb-item active" aria-current="page"><a th:href="@{/hotelmanagementsystem/room}">Rooms</a></li>
+    </ol>
+  </nav>
+</div>
+
+<!-- Search Form -->
+<div class="container mb-4">
+  <h4>Search Rooms by Dates</h4>
+  <form th:action="@{/hotelmanagementsystem/customer/room/search}" method="get" class="row g-3">
+    <div class="col-md-4">
+      <label for="checkIn" class="form-label">Check-In Date</label>
+      <input type="date" name="checkIn" id="checkIn" class="form-control" required>
+    </div>
+    <div class="col-md-4">
+      <label for="checkOut" class="form-label">Check-Out Date</label>
+      <input type="date" name="checkOut" id="checkOut" class="form-control" required>
+    </div>
+    <div class="col-md-4 d-flex align-items-end">
+      <button type="submit" class="btn btn-primary w-100">Search</button>
+    </div>
+  </form>
+</div>
+
 <!-- Table -->
 <div class="container">
   <h2 class="mb-4">Available Rooms</h2>
@@ -27,8 +55,8 @@
         <th>Occupancy</th>
         <th>Rate per Night</th>
         <th>Discount %</th>
-        <th>Description</th>
-        <th>Available</th>
+		<th>Description</th>
+		<th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -38,9 +66,11 @@
         <td th:text="${room.ratePerNight}"></td>
         <td th:text="${room.discountPercentage}"></td>
         <td th:text="${room.description}"></td>
-        <td>
-          <span th:if="${room.available}" class="text-success">Yes</span>
-          <span th:unless="${room.available}" class="text-danger">No</span>
+		<td>
+          <a th:href="@{'/hotelmanagementsystem/customer/room/booknow/' + ${room.id}}" 
+             class="btn btn-success btn-sm">
+            Book Now
+          </a>
         </td>
       </tr>
     </tbody>

@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller()
 public class SecurityController {
 
-    @GetMapping("hotelmanagementsystem/dashboard")
-    public String adminHello() {
-        return "dashboard";
+    @GetMapping("hotelmanagementsystem/customer/dashboard")
+    public String clientHello() {
+        return "customerdashboard";
     }
 
-    @GetMapping("/client/hello")
-    public String clientHello() {
-        return "Hello Client!";
+    @GetMapping("hotelmanagementsystem/admin/dashboard")
+    public String adminHello() {
+        return "admindashboard";
     }
 
     @GetMapping("/public/hello")

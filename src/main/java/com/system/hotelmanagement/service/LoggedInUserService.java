@@ -20,8 +20,6 @@ public class LoggedInUserService {
 		String username = principal.getName();
 		UserEntity user = userRepository.findByUsername(username);
 		return user.getCustomer().getId();
-		
-		
 				
 	}
 }

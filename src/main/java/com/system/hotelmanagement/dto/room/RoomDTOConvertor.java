@@ -25,6 +25,16 @@ public class RoomDTOConvertor {
 		.build();
 	}
 	
+	public ViewRoomByCustomerDTO customerRoomEntityToDto(RoomEntity roomEntity) {
+		ViewRoomByCustomerDTO dto = new ViewRoomByCustomerDTO();
+		dto.setId(roomEntity.getId());
+		dto.setOccupancyCapacity(roomEntity.getOccupancyCapacity());
+		dto.setRatePerNight(roomEntity.getRatePerNight());
+		dto.setDescription(roomEntity.getDescription());
+		dto.setDiscountPercentage(roomEntity.getDiscountPercentage());
+		return dto;
+	}
+	
 //	public RoomDataDTO entityToDtoForRoomHistory(RoomEntity roomEntity) {
 //		RoomDataDTO dto = new RoomDataDTO();
 //		dto.setId(roomEntity.getId());
