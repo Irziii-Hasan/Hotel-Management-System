@@ -30,7 +30,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
             if (role.equals("ROLE_ADMIN")) {
                 redirectUrl = "/hotelmanagementsystem/admin/dashboard";
                 break;
-            } else if (role.equals("CUSTOMER")) {
+            } else if (role.equals("ROLE_CUSTOMER")) {
                 redirectUrl = "/hotelmanagementsystem/customer/dashboard";
                 break;
             }

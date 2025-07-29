@@ -35,7 +35,7 @@ public class RegistrationController {
 	    @PostMapping ("/registration")
 	    public String doRegistration(@ModelAttribute("user") RegistrationRequestDTO dto) {
 	        registrationService.registration(dto);
-	        return "redirect:/success"; // ya koi bhi next page
+	        return "redirect:/login"; // ya koi bhi next page
 	    }
 
 	    

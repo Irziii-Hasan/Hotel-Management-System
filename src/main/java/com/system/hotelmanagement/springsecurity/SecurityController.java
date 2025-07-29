@@ -17,8 +17,4 @@ public class SecurityController {
         return "admindashboard";
     }
 
-    @GetMapping("/public/hello")
-    public String publicHello() {
-        return "Hello Public!";
-    }
 }

@@ -11,24 +11,24 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-	 @Autowired
-	    private CustomLoginSuccessHandler customLoginSuccessHandler;
+	@Autowired
+    private CustomLoginSuccessHandler customLoginSuccessHandler;
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 	    http
 	        .authorizeHttpRequests(auth -> auth
 	            .requestMatchers("hotelmanagementsystem/admin/**").hasRole("ADMIN")
-	            .requestMatchers("hotelmanagementsystem/client/**").hasRole("CLIENT")
+	            .requestMatchers("hotelmanagementsystem/customer/**").hasRole("CUSTOMER")
 	            .requestMatchers("/hotelmanagementsystem/registration").permitAll()
 	            .requestMatchers("/hotelmanagementsystem/login").permitAll()
 	            .anyRequest().authenticated()
 	        )
 	        .formLogin(form -> form
-	        		.loginPage("/hotelmanagementsystem/login")
+	        	    .loginPage("/hotelmanagementsystem/login")
 	        	    .loginProcessingUrl("/hotelmanagementsystem/login")
-	                .successHandler(customLoginSuccessHandler)
-	                .permitAll()
+	        	    .successHandler(customLoginSuccessHandler) 
+	        	    .permitAll()
 	        	)
 	        .logout(logout -> logout
 	                .logoutUrl("/logout")
