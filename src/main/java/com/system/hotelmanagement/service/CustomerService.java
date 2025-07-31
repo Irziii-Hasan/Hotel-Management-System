@@ -25,6 +25,7 @@ public class CustomerService {
 	CustomerDTOConvertor dto = new CustomerDTOConvertor();
 	private final LoggedInUserService inUserService;
 	AccountResponseDTO accountResponseDTO = new AccountResponseDTO();
+	AccountRequestDTO accountRequestDTO = new AccountRequestDTO();
 	
 	public ViewCustomerDTO addCustomer(CreateCustomerDTO customerDto) {
 		CustomerEntity customer = dto.dtoToEntity(customerDto);
@@ -51,21 +52,19 @@ public class CustomerService {
 	
 	
 	
-	public String updateAccountBalance( AccountRequestDTO dto) {
-		CustomerEntity customer = customerRepository.findById(dto.getCustomerId())
-				.orElseThrow(()-> new RuntimeException("No customer found"));
-		
-		double currentBalance = customer.getAccountBalance();
-		if(dto.getBalance()<=0) {
-			System.out.println("insufficient balance");
-			return "Invalid Amount";
-		}
-		customer.setAccountBalance(dto.getBalance()+currentBalance);
-		System.out.println("Account balance "+dto.getBalance()+currentBalance);
-		customerRepository.save(customer);
-		
-		return "Amount successfully Added";
-		
+	public String updateAccountBalance(AccountRequestDTO dto) {
+	    CustomerEntity customer = customerRepository.findById(dto.getCustomerId())
+	        .orElseThrow(() -> new RuntimeException("No customer found"));
+
+	    double currentBalance = customer.getAccountBalance();
+	    if (dto.getBalance() <= 0) {
+	        return "Invalid Amount";
+	    }
+
+	    customer.setAccountBalance(currentBalance + dto.getBalance());
+	    customerRepository.save(customer);
+
+	    return "Amount successfully Added";
 	}
 	
 	

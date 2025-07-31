@@ -21,9 +21,7 @@
       border-radius: 12px;
     }
     .btn-view-rooms { background-color: #A8DADC; }
-    .btn-booking-history { background-color: #F1FAEE; color: #333; }
     .btn-add-rooms { background-color: #F4A261; }
-    .btn-logout { background-color: #E76F51; }
     nav {
 		position: relative;
 		top: 0px;
@@ -52,18 +50,12 @@
 <div class="container text-center mt-5" style="max-width: 600px;">
   <h2 class="mb-4">Dashboard</h2>
   <a th:href="@{/hotelmanagementsystem/customer/room}">
-    <button class="dashboard-button btn-view-rooms">View Rooms</button>
+    <button class="dashboard-button btn-view-rooms">Room Management</button>
   </a>
-  <a th:href="@{/hotelmanagementsystem/booking-history}">
-    <button class="dashboard-button btn-booking-history">Booking History</button>
-  </a>
+  
   <a th:href="@{/hotelmanagementsystem/add-rooms}">
-  	<button class="dashboard-button btn-add-rooms">Add Rooms</button>
+  	<button class="dashboard-button btn-add-rooms">Booking Log</button>
   </a>
-	<a th:href="@{/hotelmanagementsystem/customer/myid}">
-		<button class="dashboard-button btn-view-rooms">My Id</button>
-	</a>
-	 
   
 </div>
 

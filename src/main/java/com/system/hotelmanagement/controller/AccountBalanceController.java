@@ -6,11 +6,13 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,10 +37,14 @@ public class AccountBalanceController {
 	}
 
 	@PostMapping
-	@ResponseBody
-	public String updateBalance(@RequestBody AccountRequestDTO dto) {
-		System.out.println(dto.getBalance()+"  "+dto.getCustomerId());
-		return customerService.updateAccountBalance(dto);
+//	@ResponseBody
+	public String updateBalance(@ModelAttribute AccountRequestDTO dto) {
+
+//	    System.out.println("Customer ID: " + customerId);
+//	    System.out.println("Balance: " + balance);
+	    customerService.updateAccountBalance(dto);
+	    return "redirect:/hotelmanagementsystem/customer/accountbalance";
+
 	}
 	
 }
