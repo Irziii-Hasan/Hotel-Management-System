@@ -2,51 +2,60 @@ package com.system.hotelmanagement.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import com.system.hotelmanagement.dto.room.CreateRoomDTO;
 import com.system.hotelmanagement.dto.room.ViewRoomDTO;
-//import org.springframework.web.bind.annotation.*;
 import com.system.hotelmanagement.service.RoomService;
 
-import org.springframework.ui.Model;
+import lombok.RequiredArgsConstructor;
+
 @Controller
-@RequestMapping ("hotelmanagementsystem/room")
+@RequestMapping("hotelmanagementsystem/admin/room")
+@RequiredArgsConstructor
 public class RoomController {
-	@Autowired
-	private RoomService roomService;
-	
-	@PostMapping("/addRoom")
-	public ViewRoomDTO addRoom(@RequestBody CreateRoomDTO roomEntity){
-		return roomService.addRoom(roomEntity);
-	}
-	
-	@GetMapping
-	public String showRoom(Model model) {
-		List<ViewRoomDTO> rooms = roomService.showRoomsList();
+
+    private final RoomService roomService;
+
+    @GetMapping
+    public String showRooms(Model model) {
+        List<ViewRoomDTO> rooms = roomService.showRoomsList();
         model.addAttribute("rooms", rooms);
-        return "roomlist";
-	}
-	
-	@DeleteMapping ("/{id}")
-	public ResponseEntity<String> deleteRoom(@PathVariable Long id){
-		roomService.deleteRoom(id);
-		return ResponseEntity.ok("Room deleted successfully");
-	}
-	
-	@PatchMapping ("/{id}")
-	public ViewRoomDTO updateRoom(@PathVariable Long id, @RequestBody CreateRoomDTO updateRoom) {
-		return roomService.updateRoom(id, updateRoom);
-	}
-	
+        return "roommanagement";
+    }
+
+    @GetMapping("/add")
+    public String showAddRoomForm(Model model) {
+        model.addAttribute("room", new CreateRoomDTO());
+        return "addroom";
+    }
+
+    @PostMapping("/add")
+    public String addRoom(@ModelAttribute("room") CreateRoomDTO room) {
+        roomService.addRoom(room);
+        return "redirect:/hotelmanagementsystem/admin/room";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteRoom(@PathVariable Long id) {
+        roomService.deleteRoom(id);
+        return "redirect:/hotelmanagementsystem/admin/room";
+    }
+
+
+
+    @GetMapping("/edit/{id}")
+    public String showEditRoom(@PathVariable Long id, Model model) {
+        ViewRoomDTO room = roomService.getRoomById(id);
+        model.addAttribute("room", room);
+        return "editroom"; 
+    }
+
+    @PostMapping("/edit/{id}")
+    public String updateRoom(@PathVariable Long id, @ModelAttribute CreateRoomDTO updateRoom) {
+        roomService.updateRoom(id, updateRoom);
+        return "redirect:/hotelmanagementsystem/admin/room";
+    }
 }

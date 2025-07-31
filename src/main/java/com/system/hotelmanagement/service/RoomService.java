@@ -34,6 +34,12 @@ public class RoomService {
 			.toList();
 	}
 	
+	public ViewRoomDTO getRoomById(Long id) {
+		RoomEntity room = roomRepository.findById(id)
+				.orElseThrow(()-> new RuntimeException("No room found"));
+		return dto.entityToDto(room);
+	}
+	
 	public String deleteRoom(Long id){
 		roomRepository.findById(id)
 				.orElseThrow(()-> new RuntimeException("No room found with id"+id));
