@@ -24,7 +24,7 @@ public class RegistrationController {
 	 	@GetMapping  ("/registration")
 	    public String showRegistrationForm(Model model) {
 	        model.addAttribute("user", new RegistrationRequestDTO());
-	        return "registration"; // thymeleaf template name
+	        return "registration"; 
 	    }
 	 
 		@GetMapping("/login")

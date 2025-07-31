@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.system.hotelmanagement.dto.room.ViewRoomByCustomerDTO;
-import com.system.hotelmanagement.dto.room.ViewRoomDTO;
 import com.system.hotelmanagement.service.SearchRoomService;
 
 import lombok.RequiredArgsConstructor;
@@ -38,12 +37,6 @@ public class SearchRoomController {
 	    model.addAttribute("rooms", availableRoomsFromBooking);
 
 		return "roomlist";
-	}
-	
-//	@GetMapping ("search/by-id")
-//	public ViewRoomDTO searchRoomById(@PathVariable Long id) {
-//		return roomService.searchRoomById(id);
-//	}
-//	
+	}	
 	
 }

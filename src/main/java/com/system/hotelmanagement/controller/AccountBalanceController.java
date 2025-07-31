@@ -30,11 +30,7 @@ public class AccountBalanceController {
 	}
 
 	@PostMapping
-//	@ResponseBody
 	public String updateBalance(@ModelAttribute AccountRequestDTO dto) {
-
-//	    System.out.println("Customer ID: " + customerId);
-//	    System.out.println("Balance: " + balance);
 	    customerService.updateAccountBalance(dto);
 	    return "redirect:/hotelmanagementsystem/customer/accountbalance";
 

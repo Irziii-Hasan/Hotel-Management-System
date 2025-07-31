@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -18,8 +17,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-//        System.out.println("Loading user: " + username);
 
         if ("admin".equals(username)) {
             // InMemory Admin

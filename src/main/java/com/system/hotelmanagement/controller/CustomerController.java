@@ -26,8 +26,4 @@ public class CustomerController {
 		return customerService.addCustomer(customer);
 	}
 	
-//	@GetMapping ("customer")
-//	public List<ViewCustomerDTO> showCustomer(CreateCustomerDTO customer){
-//		return customerService.showCustomer();
-//	}
 }

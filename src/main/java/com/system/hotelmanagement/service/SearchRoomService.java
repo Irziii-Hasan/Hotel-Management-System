@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.system.hotelmanagement.dto.room.RoomDTOConvertor;
 import com.system.hotelmanagement.dto.room.ViewRoomByCustomerDTO;
 import com.system.hotelmanagement.dto.room.ViewRoomDTO;
-import com.system.hotelmanagement.model.BookingEntity;
 import com.system.hotelmanagement.model.RoomEntity;
 import com.system.hotelmanagement.repository.BookingRepository;
 import com.system.hotelmanagement.repository.RoomRepository;

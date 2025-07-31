@@ -1,10 +1,6 @@
 package com.system.hotelmanagement.dto.booking;
 
 import java.time.LocalDate;
-
-import com.system.hotelmanagement.model.CustomerEntity;
-import com.system.hotelmanagement.model.RoomEntity;
-
 import lombok.Data;
 
 @Data
