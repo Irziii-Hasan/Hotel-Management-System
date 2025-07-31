@@ -2,13 +2,19 @@ package com.system.hotelmanagement.payment;
 
 import org.springframework.stereotype.Service;
 
+import com.system.hotelmanagement.service.CustomerService;
+
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class AccountPayment implements PaymentStrategy{
+	private final CustomerService customerService;
 
 	@Override
-	public String pay(double amount) {
-		return "Your amount: "+amount+" has been withdraw ";
-		
+	public boolean pay(double amount, Long customerId) {
+		boolean isWithdraw =  customerService.withdrawBalance(customerId, amount);
+		return isWithdraw;		
 	}
 
 	@Override

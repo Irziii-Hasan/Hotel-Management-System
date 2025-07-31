@@ -10,9 +10,9 @@ import lombok.Data;
 @Data
 public class CreateBookingDTO {
 
-	private CustomerEntity customer;
+	private Long customerId;
 	
-	private RoomEntity room;
+	private Long roomId;
 	
 	private LocalDate checkIn;
 	

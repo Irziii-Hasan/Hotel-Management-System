@@ -17,10 +17,9 @@ public class BookingDTOConvertor {
 	public BookingEntity dtoToEntity(CreateBookingDTO dto) {
 	
 		return BookingEntity.builder()
-		.room(dto.getRoom())
-		.customer(dto.getCustomer())
 		.checkIn(dto.getCheckIn())
 		.checkOut(dto.getCheckOut())
+		.paymentMethod(dto.getPaymentMethod())
 		.build();
 	}
 

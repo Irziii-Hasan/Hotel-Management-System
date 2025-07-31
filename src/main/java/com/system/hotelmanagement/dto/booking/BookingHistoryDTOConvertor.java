@@ -10,6 +10,8 @@ public class BookingHistoryDTOConvertor {
 		dto.setCustomerName(bookRoom.getCustomer().getFirstName() +" " + bookRoom.getCustomer().getLastName());
 		dto.setCheckIn(bookRoom.getCheckIn());
 		dto.setCheckOut(bookRoom.getCheckOut());
+		dto.setNetPrice(bookRoom.getNetPrice());
+		dto.setPaymentMethod(bookRoom.getPaymentMethod());
 		return dto;
 	}
 }

@@ -17,10 +17,10 @@ public class PaymentController {
 	@Autowired
 	private final PaymentService paymentService;
 	
-	@PostMapping
-	public String getPayment(@RequestParam String type, @RequestParam double amount) {
-		return paymentService.pay(type, amount);
-	}
+//	@PostMapping
+//	public String getPayment(@RequestParam String type, @RequestParam double amount, @RequestParam Long customerId) {
+//		return paymentService.pay(type, amount, customerId);
+//	}
 	
 
 }

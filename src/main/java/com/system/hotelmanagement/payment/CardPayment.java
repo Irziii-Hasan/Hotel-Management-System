@@ -6,8 +6,9 @@ import org.springframework.stereotype.Service;
 public class CardPayment implements PaymentStrategy {
 
 	@Override
-	public String pay(double amount) {
-		return "Your amount: "+amount+" has been withdraw ";
+	public boolean pay(double amount, Long customerId) {
+		return true;
+		
 	}
 
 	@Override
