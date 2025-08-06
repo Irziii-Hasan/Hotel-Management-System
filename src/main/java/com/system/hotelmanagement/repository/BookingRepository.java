@@ -14,8 +14,8 @@ import com.system.hotelmanagement.model.RoomEntity;
 @Repository
 public interface BookingRepository extends JpaRepository<BookingEntity, Long> {
 
-	@Query("SELECT CASE WHEN COUNT(*) > 0 THEN true ELSE false END FROM BookingEntity  WHERE checkIn <= ?2 AND checkOut  >= ?1")
-	public boolean isRoomReserved(LocalDate myCheckin, LocalDate myCheckout);
+	@Query("SELECT CASE WHEN COUNT(*) > 0 THEN true ELSE false END FROM BookingEntity  WHERE room = ?1 AND checkIn <= ?3 AND checkOut  >= ?2")
+	public boolean isRoomReserved(RoomEntity roomId, LocalDate myCheckin, LocalDate myCheckout);
 
 	public List<BookingEntity> findByCustomerId(Long id);
 	

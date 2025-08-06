@@ -27,6 +27,11 @@ public class RegistrationService {
 		
 //		Register customer
 		CustomerEntity customer = customerDTOConvertor.dtoToEntity(dto);
+		boolean isExist = userRepository.existsByUsername(dto.getUsername());
+		if (isExist) {
+			System.out.println("cannot create with this username or usename already exist");
+			return "cannot create with this username or usename already exist";
+		}
 		CustomerEntity savedCustomer = customerRepository.save(customer);
 		
 //		Register user

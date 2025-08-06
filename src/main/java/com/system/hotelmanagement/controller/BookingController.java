@@ -48,14 +48,8 @@ public class BookingController {
 	@GetMapping("/payment-details")
 	@ResponseBody
 	public ViewBookingCostDTO getPaymentSlip(@RequestParam Long roomId, @RequestParam LocalDate checkIn, @RequestParam  LocalDate checkOut) {
-		boolean isDurationInValid = bookingService.isBookingDurationInValid(checkIn, checkOut);
-		if (!isDurationInValid) {
-			System.out.print(isDurationInValid);
-			return bookingService.sendDetailsToForm(roomId, checkIn, checkOut);
-		}
-		System.out.print(isDurationInValid);
-
-		return null;
+		System.out.println(checkIn+" "+checkOut);
+		return bookingService.getPaymentSlip(roomId, checkIn, checkOut);
 	}
 
 	@GetMapping("/bookinghistory")

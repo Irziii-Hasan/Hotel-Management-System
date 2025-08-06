@@ -35,6 +35,27 @@ public class BookingService {
 	ViewBookingCostDTO bookingCostDTO = new ViewBookingCostDTO();
 	BookingHistoryDTOConvertor dtoHistory = new BookingHistoryDTOConvertor();
 
+
+	public ViewBookingCostDTO getPaymentSlip(Long roomId, LocalDate checkIn, LocalDate checkOut) {
+		boolean isDurationInValid = isBookingDurationInValid(roomId, checkIn, checkOut);
+		System.out.println(isDurationInValid);
+		boolean isNotNegative = isDurationNotNegative(checkIn,checkOut);
+		System.out.println(isNotNegative);
+		if (!isDurationInValid && (!isDurationNotNegative(checkIn, checkOut)) ) {
+			return sendDetailsToForm(roomId, checkIn, checkOut);
+		} else {
+			return null;
+		}
+	}
+	
+	
+	public boolean isDurationNotNegative(LocalDate checkIn, LocalDate checkOut) {
+		if (checkOut.isBefore(checkIn)) {
+			return 	true;	
+		}else {
+			return false;
+		}
+	}
 	
 	public ViewBookingCostDTO sendDetailsToForm(Long roomId,LocalDate checkIn, LocalDate checkOut) { 
 		RoomEntity room = roomRepo.findById(roomId)
@@ -77,8 +98,10 @@ public class BookingService {
 	}
 	
 	
-	public boolean isBookingDurationInValid(LocalDate checkIn, LocalDate checkOut) {
-		return bookingRepo.isRoomReserved(checkIn, checkOut);
+	public boolean isBookingDurationInValid(Long roomId, LocalDate checkIn, LocalDate checkOut) {
+		RoomEntity room = roomRepo.findById(roomId)
+				.orElseThrow(()-> new RuntimeException("Room not found"));
+		return bookingRepo.isRoomReserved(room, checkIn, checkOut);
 	}
 	
 	
