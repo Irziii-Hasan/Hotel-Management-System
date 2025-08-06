@@ -48,7 +48,6 @@ public class BookingController {
 	@GetMapping("/payment-details")
 	@ResponseBody
 	public ViewBookingCostDTO getPaymentSlip(@RequestParam Long roomId, @RequestParam LocalDate checkIn, @RequestParam  LocalDate checkOut) {
-		System.out.println(checkIn+" "+checkOut);
 		return bookingService.getPaymentSlip(roomId, checkIn, checkOut);
 	}
 
