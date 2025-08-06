@@ -62,9 +62,7 @@ public class RoomService {
 		if(room.getDescription()!=null) {
 			existingStudent.setDescription(room.getDescription());
 		}
-		if(room.isAvailable()) {
-			existingStudent.setAvailable(room.isAvailable());
-		}
+		existingStudent.setAvailable(room.isAvailable());
 			
 		RoomEntity updatedRoom =  roomRepository.save(existingStudent);
 		return dto.entityToDto(updatedRoom);
